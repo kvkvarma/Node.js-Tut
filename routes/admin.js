@@ -10,7 +10,8 @@ const products = [];
 //      /admin/add-user
 router.get('/add-product',(req,res,next)=>{
     // res.send('<form action="/admin/users" method="POST"><input type="text" name="title"><button type="submit">submit</button></form>')
-    res.sendFile(path.join(__dirname,'../','views','add-product.html'));
+    // res.sendFile(path.join(__dirname,'../','views','add-product.html'));
+    res.render('add-product',{pageTitle:'Add Product',path:'/add-product'})
 })
 //     /admin.users
 router.post('/add-product',(req,res,next)=>{
