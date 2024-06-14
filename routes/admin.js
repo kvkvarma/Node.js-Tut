@@ -4,22 +4,20 @@ const { DEFAULT_MAX_VERSION } = require('tls');
 const router = express.Router();
 const rootDir = require('../util/paths');
 const { route } = require('./shop');
+const productsController = require('../controllers/products');
 //Both can have the same urlpath if they differ in the method
 
-const products = [];
+
 //      /admin/add-user
-router.get('/add-product',(req,res,next)=>{
-    // res.send('<form action="/admin/users" method="POST"><input type="text" name="title"><button type="submit">submit</button></form>')
+
+
+router.get('/add-product',productsController.getAddProduct)
+// res.send('<form action="/admin/users" method="POST"><input type="text" name="title"><button type="submit">submit</button></form>')
     // res.sendFile(path.join(__dirname,'../','views','add-product.html'));
-    res.render('add-product',{pageTitle:'Add Product',path:'/add-product'})
-})
+
 //     /admin.users
-router.post('/add-product',(req,res,next)=>{
-    console.log("admin-page",req.body);
-    products.push({title:req.body.title})
-    res.redirect('/');
+router.post('/add-product',productsController.postAddProduct)  
     // console.log('Users Middleware');
     // res.send('<h4>This is users path</h4>');
-})  
-exports.routes = router;
-exports.products = products;
+
+module.exports = router;
